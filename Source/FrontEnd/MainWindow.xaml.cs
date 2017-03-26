@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diablo2FileFormat;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace Diablo2HeroEditor
         public MainWindow()
         {
             InitializeComponent();
+
+            Diablo2File file = new Diablo2File(@"C:\Users\Marc\Saved Games\Diablo II\Median.d2s");
+            file.Load();
         }
     }
 }
