@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diablo2FileFormat\Diablo2FileFormat.csproj">
+      <Project>{f4977219-bfad-4b52-979b-cb10219c1d5f}</Project>
+      <Name>Diablo2FileFormat</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
