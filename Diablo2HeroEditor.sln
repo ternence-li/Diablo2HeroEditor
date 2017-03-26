@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diablo2HeroEditor", "Source\FrontEnd\Diablo2HeroEditor.csproj", "{45026BAB-0C2A-4083-98AA-753EA45167A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diablo2HeroEditor", "Diablo2HeroEditor\Diablo2HeroEditor.csproj", "{45026BAB-0C2A-4083-98AA-753EA45167A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diablo2FileFormat", "Source\Diablo2FileFormat\Diablo2FileFormat.csproj", "{F4977219-BFAD-4B52-979B-CB10219C1D5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diablo2FileFormat", "Diablo2FileFormat\Diablo2FileFormat.csproj", "{F4977219-BFAD-4B52-979B-CB10219C1D5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
