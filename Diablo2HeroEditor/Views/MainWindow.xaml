@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Diablo2HeroEditor"
         mc:Ignorable="d"
         Title="Diablo 2 Hero Editor" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{Binding CharacterName}" />
+        <TextBlock Text="{Binding HeroClass}" />
+    </StackPanel>
 </Window>

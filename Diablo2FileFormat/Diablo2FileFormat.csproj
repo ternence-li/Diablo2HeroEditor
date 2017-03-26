@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checksum.cs" />
+    <Compile Include="Classes.cs" />
     <Compile Include="Diablo2File.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

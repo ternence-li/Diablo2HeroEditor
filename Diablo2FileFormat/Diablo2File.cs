@@ -9,7 +9,7 @@ namespace Diablo2FileFormat
 {
     public class Diablo2File
     {
-        protected byte[] m_sourceBytes;
+        protected byte[] m_fileData;
 
         protected string FilePath { get; }
 
@@ -18,6 +18,8 @@ namespace Diablo2FileFormat
         protected bool FileChanged { get; set; }
 
         protected virtual int ChecksumOffset => 0x0C;
+        protected virtual int CharacterNameOffset => 0x14;
+        protected virtual int ClassOffset => 0x28;
 
         public Diablo2File(string filePath)
         {
@@ -28,8 +30,8 @@ namespace Diablo2FileFormat
         {
             try
             {
-                m_sourceBytes = File.ReadAllBytes(FilePath);
-                FileSize = m_sourceBytes.Length;
+                m_fileData = File.ReadAllBytes(FilePath);
+                FileSize = m_fileData.Length;
                 FileChanged = false;
             }
             catch (Exception)
@@ -41,9 +43,19 @@ namespace Diablo2FileFormat
         {
             if (FileChanged)
             {
-                Checksum.UpdateChecksum(m_sourceBytes, ChecksumOffset);
-                File.WriteAllBytes(FilePath, m_sourceBytes);
+                Checksum.UpdateChecksum(m_fileData, ChecksumOffset);
+                File.WriteAllBytes(FilePath, m_fileData);
             }
+        }
+
+        public string GetCharacterName()
+        {
+           return Encoding.ASCII.GetString(m_fileData, CharacterNameOffset, 16).Trim(new [] { '\0' });
+        }
+
+        public Classes GetClass()
+        {
+            return (Classes)m_fileData[ClassOffset];
         }
     }
 }
