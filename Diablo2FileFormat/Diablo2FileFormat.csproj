@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterStatus.cs" />
     <Compile Include="Checksum.cs" />
     <Compile Include="Classes.cs" />
     <Compile Include="Diablo2File.cs" />
+    <Compile Include="FileVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
