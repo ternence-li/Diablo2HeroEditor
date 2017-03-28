@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes.cs" />
+    <Compile Include="BitReader.cs" />
     <Compile Include="CharacterStatus.cs" />
     <Compile Include="Checksum.cs" />
     <Compile Include="Classes.cs" />
