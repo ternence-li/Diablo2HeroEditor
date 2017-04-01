@@ -49,7 +49,9 @@
     <Compile Include="HeroClass.cs" />
     <Compile Include="Diablo2File.cs" />
     <Compile Include="FileVersion.cs" />
+    <Compile Include="Interfaces\IBasicCharacterData.cs" />
     <Compile Include="Interfaces\IQuestData.cs" />
+    <Compile Include="Interfaces\IStatisticData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sections\HeaderSection.cs" />
     <Compile Include="Sections\IDiablo2FileSection.cs" />

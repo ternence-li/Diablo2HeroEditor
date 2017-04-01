@@ -31,7 +31,9 @@ namespace Diablo2FileFormat
 
         protected bool FileChanged => m_sections.Any(s => s.IsChanged);
 
+        public IBasicCharacterData CharacterData => m_headerSection;
         public IQuestData QuestData => m_questSection;
+        public IStatisticData Statistics => m_statsSection;
 
         protected virtual uint Diablo2FileSignature => 0xAA55AA55;
 
@@ -163,6 +165,23 @@ namespace Diablo2FileFormat
         public void SetCharacterProgression(Difficulty difficulty, Act act)
         {
             m_headerSection.SetCharacterProgression(difficulty, act);
+        }
+
+        public void SetCharacterLevel(int level)
+        {
+            int exp = 0;
+            if (level > 1)
+            {
+                exp = 1000;
+                for (int i = 2; i < level; ++i)
+                {
+                    exp += (i - 1) * 1000;
+                }
+            }
+
+            CharacterData.Level = level;
+            Statistics.SetStatistic(CharacterStatistic.Level, (uint)level);
+            Statistics.SetStatistic(CharacterStatistic.Experience, (uint)exp);
         }
     }
 }

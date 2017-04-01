@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diablo2FileFormat.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Diablo2FileFormat.Sections
     /// <summary>
     /// The fixed length section is the part of the file that includes everything prior to the stats section.
     /// </summary>
-    public class HeaderSection : IDiablo2FileSection
+    public class HeaderSection : IDiablo2FileSection, IBasicCharacterData
     {
         public byte[] Data { get; }
         public bool IsChanged { get; set; }
@@ -25,6 +26,7 @@ namespace Diablo2FileFormat.Sections
         protected virtual int CharacterProgressionOffset => 0x25;
         protected virtual int ClassOffset => 0x28;
         protected virtual int SkillSectionLengthOffset => 0x2A;
+        protected virtual int CharacterLevel => 0x2B;
 
         public HeaderSection(byte[] data)
         {
@@ -95,6 +97,16 @@ namespace Diablo2FileFormat.Sections
             byte actValue = (byte)(act != Act.Act4 ? act + 1 : act);
             Data[CharacterProgressionOffset] = (byte)((byte)difficulty * 5 + actValue);
             IsChanged = true;
+        }
+
+        public int Level
+        {
+            get { return Data[CharacterLevel]; }
+            set
+            {
+                Data[CharacterLevel] = (byte)value;
+                IsChanged = true;
+            }
         }
     }
 }

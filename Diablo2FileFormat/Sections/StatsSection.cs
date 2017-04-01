@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diablo2FileFormat.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Diablo2FileFormat.Sections
 {
-    public class StatsSection : IDiablo2FileSection
+    public class StatsSection : IDiablo2FileSection, IStatisticData
     {
         public byte[] Data { get; private set; }
         public bool IsChanged { get; set; }
