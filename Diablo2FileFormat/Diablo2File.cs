@@ -1,4 +1,5 @@
-﻿using Diablo2FileFormat.Sections;
+﻿using Diablo2FileFormat.Interfaces;
+using Diablo2FileFormat.Sections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace Diablo2FileFormat
         protected string FilePath { get; }
 
         protected bool FileChanged => m_sections.Any(s => s.IsChanged);
+
+        public IQuestData QuestData => m_questSection;
 
         protected virtual uint Diablo2FileSignature => 0xAA55AA55;
 
@@ -150,6 +153,11 @@ namespace Diablo2FileFormat
         public void SetStatistic(CharacterStatistic stat, uint value)
         {
             m_statsSection.SetStatistic(stat, value);
+        }
+
+        public void ActivateAllWaypoints()
+        {
+            m_waypointSection.ActivateAllWaypoints();
         }
     }
 }
