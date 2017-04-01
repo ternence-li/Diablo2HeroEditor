@@ -41,14 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes.cs" />
+    <Compile Include="CharacterStatistic.cs" />
     <Compile Include="BitReader.cs" />
     <Compile Include="CharacterStatus.cs" />
     <Compile Include="Checksum.cs" />
-    <Compile Include="Classes.cs" />
+    <Compile Include="HeroClass.cs" />
     <Compile Include="Diablo2File.cs" />
     <Compile Include="FileVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sections\HeaderSection.cs" />
+    <Compile Include="Sections\IDiablo2FileSection.cs" />
+    <Compile Include="Sections\ItemSection.cs" />
+    <Compile Include="Sections\NpcSection.cs" />
+    <Compile Include="Sections\QuestSection.cs" />
+    <Compile Include="Sections\SkillSection.cs" />
+    <Compile Include="Sections\StatsSection.cs" />
+    <Compile Include="Sections\WaypointSection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
