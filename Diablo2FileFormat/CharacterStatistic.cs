@@ -30,7 +30,7 @@ namespace Diablo2FileFormat
 
     public class StatisticsHelper
     {
-        public static int GetBitsPerAttribute(CharacterStatistic attribute)
+        public static int GetBitsPerStat(CharacterStatistic attribute)
         {
             switch (attribute)
             {

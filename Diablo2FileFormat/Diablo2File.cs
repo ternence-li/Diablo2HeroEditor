@@ -93,6 +93,11 @@ namespace Diablo2FileFormat
         {
             if (FileChanged)
             {
+                if (m_statsSection.IsChanged)
+                {
+                    m_statsSection.SaveStats();
+                }
+
                 m_headerSection.FileSize = m_sections.Sum(s => s.Size);
 
                 m_fileData = new byte[m_headerSection.FileSize];
@@ -140,6 +145,11 @@ namespace Diablo2FileFormat
         public uint GetStatistic(CharacterStatistic stat)
         {
             return m_statsSection.GetStatistic(stat);
+        }
+
+        public void SetStatistic(CharacterStatistic stat, uint value)
+        {
+            m_statsSection.SetStatistic(stat, value);
         }
     }
 }

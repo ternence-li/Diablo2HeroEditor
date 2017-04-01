@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diablo2FileFormat
 {
-    public class BitReader
+    public class BitOperations
     {
         public static uint ReadBits(byte[] data, ref int offset, ref int bitOffset, int bitLength)
         {
@@ -38,6 +38,29 @@ namespace Diablo2FileFormat
             }
 
             return val;
+        }
+
+        public static void WriteBits(byte[] data, uint value, ref int offset, ref int bitOffset, int bitLength)
+        {
+            int bitsRemainingInCurrentByte = 8 - bitOffset;
+
+            data[offset] += (byte)(value << bitOffset);
+
+            if (bitLength >= bitsRemainingInCurrentByte)
+            {
+                bitOffset = 0;
+                ++offset;
+                bitLength -= bitsRemainingInCurrentByte;
+
+                if (bitLength > 0)
+                {
+                    WriteBits(data, value >> bitsRemainingInCurrentByte, ref offset, ref bitOffset, bitLength);
+                }
+            }
+            else
+            {
+                bitOffset += bitLength;
+            }
         }
     }
 }

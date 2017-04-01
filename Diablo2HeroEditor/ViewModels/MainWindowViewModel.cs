@@ -9,7 +9,8 @@ namespace Diablo2HeroEditor.ViewModels
         {
             Diablo2File file = new Diablo2File(@"C:\Users\Marc\Saved Games\Diablo II\Zon.d2s");
             file.Load();
-            //file.Save();
+
+            file.Save();
 
             CharacterName = file.CharacterName;
             HeroClass = file.HeroClass.ToString();

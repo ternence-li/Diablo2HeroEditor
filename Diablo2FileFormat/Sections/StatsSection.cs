@@ -8,7 +8,7 @@ namespace Diablo2FileFormat.Sections
 {
     public class StatsSection : IDiablo2FileSection
     {
-        public byte[] Data { get; }
+        public byte[] Data { get; private set; }
         public bool IsChanged { get; set; }
         public int Size => Data.Length;
 
@@ -42,11 +42,11 @@ namespace Diablo2FileFormat.Sections
             int bitOffset = 0;
             while (i < Data.Length)
             {
-                var stat = (CharacterStatistic)BitReader.ReadBits(Data, ref i, ref bitOffset, 9);
+                var stat = (CharacterStatistic)BitOperations.ReadBits(Data, ref i, ref bitOffset, 9);
 
                 if (stat != CharacterStatistic.EndOfAttributes)
                 {
-                    var val = BitReader.ReadBits(Data, ref i, ref bitOffset, StatisticsHelper.GetBitsPerAttribute(stat));
+                    var val = BitOperations.ReadBits(Data, ref i, ref bitOffset, StatisticsHelper.GetBitsPerStat(stat));
 
                     m_stats[stat] = val;
                 }
@@ -58,6 +58,36 @@ namespace Diablo2FileFormat.Sections
             }
         }
 
+        public void SaveStats()
+        {
+            var newData = new byte[100];
+            newData[0] = 0x67;
+            newData[1] = 0x66;
+
+            int offset = 2;
+            int bitOffset = 0;
+            foreach (CharacterStatistic stat in Enum.GetValues(typeof(CharacterStatistic)))
+            {
+                uint value;
+                if (stat == CharacterStatistic.EndOfAttributes)
+                {
+                    BitOperations.WriteBits(newData, (uint)stat, ref offset, ref bitOffset, 9);
+                    if (bitOffset != 0)
+                    {
+                        BitOperations.WriteBits(newData, 0xFF, ref offset, ref bitOffset, 8 - bitOffset);
+                    }
+                }
+                else if (m_stats.TryGetValue(stat, out value) && value != 0)
+                {
+                    BitOperations.WriteBits(newData, (uint)stat, ref offset, ref bitOffset, 9);
+                    BitOperations.WriteBits(newData, value, ref offset, ref bitOffset, StatisticsHelper.GetBitsPerStat(stat));
+                }
+            }
+
+            Data = new byte[offset];
+            Array.Copy(newData, Data, offset);
+        }
+
         public uint GetStatistic(CharacterStatistic stat)
         {
             uint val = 0;
@@ -65,6 +95,12 @@ namespace Diablo2FileFormat.Sections
             m_stats.TryGetValue(stat, out val);
 
             return val;
+        }
+
+        public void SetStatistic(CharacterStatistic stat, uint value)
+        {
+            m_stats[stat] = value;
+            IsChanged = true;
         }
     }
 }
