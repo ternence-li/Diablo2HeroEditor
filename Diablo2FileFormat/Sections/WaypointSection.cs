@@ -6,7 +6,7 @@ namespace Diablo2FileFormat.Sections
     {
         private const int DataOffset = 8;
 
-        private const int SizePerDifficulty = 27;
+        private const int SizePerDifficulty = 24;
 
         public byte[] Data { get; }
         public bool IsChanged { get; set; }
