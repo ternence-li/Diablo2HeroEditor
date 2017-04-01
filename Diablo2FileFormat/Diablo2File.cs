@@ -34,6 +34,7 @@ namespace Diablo2FileFormat
         public IBasicCharacterData CharacterData => m_headerSection;
         public IQuestData QuestData => m_questSection;
         public IStatisticData Statistics => m_statsSection;
+        public ISkillData Skills => m_skillSection;
 
         protected virtual uint Diablo2FileSignature => 0xAA55AA55;
 
@@ -182,6 +183,25 @@ namespace Diablo2FileFormat
             CharacterData.Level = level;
             Statistics.SetStatistic(CharacterStatistic.Level, (uint)level);
             Statistics.SetStatistic(CharacterStatistic.Experience, (uint)exp);
+        }
+
+        public void PimpCharacter()
+        {
+            SetCharacterLevel(120);
+            SetCharacterProgression(Difficulty.Hell, Act.Act5);
+
+            Skills.SetAllSkillsLevel(120);
+
+            QuestData.ChangeQuests(true);
+            ActivateAllWaypoints();
+
+            Statistics.SetStatistic(CharacterStatistic.Strength, 4095);
+            Statistics.SetStatistic(CharacterStatistic.Dexterity, 4095);
+            Statistics.SetStatistic(CharacterStatistic.Vitality, 4095);
+            Statistics.SetStatistic(CharacterStatistic.Energy, 4095);
+            Statistics.SetStatistic(CharacterStatistic.StatsLeft, 4095);
+            Statistics.SetStatistic(CharacterStatistic.MaxLife, 2097151);
+            Statistics.SetStatistic(CharacterStatistic.MaxMana, 2097151);
         }
     }
 }

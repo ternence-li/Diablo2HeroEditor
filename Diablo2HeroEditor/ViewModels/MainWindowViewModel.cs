@@ -7,7 +7,7 @@ namespace Diablo2HeroEditor.ViewModels
     {
         public MainWindowViewModel()
         {
-            Diablo2File file = new Diablo2File(@"C:\Users\Marc\Saved Games\Diablo II\Zon.d2s");
+            Diablo2File file = new Diablo2File(@"C:\Users\Marc\Saved Games\Diablo II\Pal.d2s");
             file.Load();
 
             file.Save();

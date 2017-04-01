@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Diablo2FileFormat.Interfaces;
+using System;
 
 namespace Diablo2FileFormat.Sections
 {
-    public class SkillSection : IDiablo2FileSection
+    public class SkillSection : IDiablo2FileSection, ISkillData
     {
         public byte[] Data { get; }
         public bool IsChanged { get; set; }
@@ -16,6 +13,23 @@ namespace Diablo2FileFormat.Sections
         {
             Data = new byte[size];
             Array.Copy(data, offset, Data, 0, size);
+        }
+
+        public void SetSkillLevel(int skillNum, byte level)
+        {
+            if (skillNum >= 0 && skillNum < Data.Length)
+            {
+                Data[skillNum + 2] = level;
+                IsChanged = true;
+            }
+        }
+
+        public void SetAllSkillsLevel(byte level)
+        {
+            for (int i = 0; i < Data.Length - 2; ++i)
+            {
+                SetSkillLevel(i, level);
+            }
         }
     }
 }

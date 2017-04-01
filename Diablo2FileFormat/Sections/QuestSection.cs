@@ -46,6 +46,12 @@ namespace Diablo2FileFormat.Sections
             {
                 Data[offset] = 0x01;     // Quest complete
                 Data[offset + 1] = 0x10; // Quest log animation viewed
+
+                if (act == Act.Act5 && quest == Quest.Quest3)
+                {
+                    // Scroll of resist
+                    Data[offset] += 0xC0;
+                }
             }
             else
             {
