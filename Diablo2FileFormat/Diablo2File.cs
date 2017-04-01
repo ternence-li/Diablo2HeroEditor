@@ -159,5 +159,10 @@ namespace Diablo2FileFormat
         {
             m_waypointSection.ActivateAllWaypoints();
         }
+
+        public void SetCharacterProgression(Difficulty difficulty, Act act)
+        {
+            m_headerSection.SetCharacterProgression(difficulty, act);
+        }
     }
 }

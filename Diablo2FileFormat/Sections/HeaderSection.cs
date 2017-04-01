@@ -89,5 +89,12 @@ namespace Diablo2FileFormat.Sections
                 }
             }
         }
+
+        public void SetCharacterProgression(Difficulty difficulty, Act act)
+        {
+            byte actValue = (byte)(act != Act.Act4 ? act + 1 : act);
+            Data[CharacterProgressionOffset] = (byte)((byte)difficulty * 5 + actValue);
+            IsChanged = true;
+        }
     }
 }
