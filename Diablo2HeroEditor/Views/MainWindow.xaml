@@ -6,9 +6,41 @@
         xmlns:local="clr-namespace:Diablo2HeroEditor"
         mc:Ignorable="d"
         Title="Diablo 2 Hero Editor" Height="350" Width="525">
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="{Binding CharacterName}" />
-        <TextBlock Text="{Binding HeroClass}" />
-        <TextBlock Text="{Binding Stats}" />
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+            <Button Content="Open"
+                    Margin="4"
+                    Command="{Binding OpenCommand}"/>
+            <Button Content="Save"
+                    Margin="4"
+                    Command="{Binding SaveCommand}"/>
+        </StackPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <TextBlock Text="{Binding Status}" />
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{Binding FilePath}" />
+            </StatusBarItem>
+        </StatusBar>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding CharacterName}" />
+            <TextBlock Text="{Binding HeroClass}" />
+            <TextBlock Text="{Binding Stats}" />
+        </StackPanel>
+    </DockPanel>
+    
 </Window>

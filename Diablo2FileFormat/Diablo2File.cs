@@ -133,8 +133,9 @@ namespace Diablo2FileFormat
             if (BitConverter.ToUInt32(m_fileData, 0) != Diablo2FileSignature)
                 return false;
 
+            var version = (FileVersion)BitConverter.ToUInt32(m_fileData, VersionOffset);
             // Support only file version 1.14
-            if ((FileVersion)BitConverter.ToUInt32(m_fileData, VersionOffset) != FileVersion.V114)
+            if (version != FileVersion.V114 || version != FileVersion.V109)
                 return false;
 
             return true;
