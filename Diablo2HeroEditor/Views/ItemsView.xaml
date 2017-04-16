@@ -12,6 +12,28 @@
         <ResourceDictionary Source="pack://application:,,,/Diablo2HeroEditor.Resources;component/Resources.xaml" />
     </UserControl.Resources>
     <Grid>
-        <Image Source="{StaticResource LargeInventory}" />
+        <TabControl TabStripPlacement="Right">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="90" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="3" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Inventory">
+                <Image Source="{StaticResource LargeInventory}" />
+            </TabItem>
+            <TabItem Header="Stash" />
+            <TabItem Header="Cube" />
+        </TabControl>
     </Grid>
 </UserControl>

@@ -51,6 +51,8 @@
             <TabItem Header="Items">
                 <views:ItemsView />
             </TabItem>
+            <TabItem Header="Skills" />
+            <TabItem Header="Progression" />
         </TabControl>
     </DockPanel>
     

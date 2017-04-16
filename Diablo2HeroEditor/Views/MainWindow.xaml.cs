@@ -1,5 +1,4 @@
-﻿using Diablo2HeroEditor.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Diablo2HeroEditor
 {
@@ -11,7 +10,6 @@ namespace Diablo2HeroEditor
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
     }
 }
