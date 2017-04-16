@@ -1,6 +1,7 @@
 ﻿using Diablo2FileFormat;
 using Diablo2HeroEditor.Helpers;
-using System.Configuration;
+using Diablo2HeroEditor.Properties;
+using Microsoft.Win32;
 using System.IO;
 using System.Windows.Input;
 
@@ -12,10 +13,12 @@ namespace Diablo2HeroEditor.ViewModels
 
         public MainWindowViewModel()
         {
+            Reload();
         }
 
         public ICommand OpenCommand { get { return new DelegateCommand(OnOpen); } }
         public ICommand SaveCommand { get { return new DelegateCommand(OnSave); } }
+        public ICommand ReloadCommand { get { return new DelegateCommand(Reload); } }
 
         private string m_characterName;
         public string CharacterName
@@ -74,18 +77,11 @@ namespace Diablo2HeroEditor.ViewModels
 
         public void OnOpen()
         {
-            string savefile = ConfigurationManager.AppSettings["savefile"];
-
-            if (!string.IsNullOrEmpty(savefile) && File.Exists(savefile))
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Diablo 2 save file|*.d2s";
+            if (dlg.ShowDialog() == true)
             {
-                Status = "Loaded";
-                FilePath = savefile;
-                m_file = new Diablo2File(savefile);
-                m_file.Load();
-
-                CharacterName = m_file.CharacterName;
-                HeroClass = m_file.HeroClass.ToString();
-                Stats = $"Str: {m_file.GetStatistic(CharacterStatistic.Strength)}, Dex: {m_file.GetStatistic(CharacterStatistic.Dexterity)}, Vit: {m_file.GetStatistic(CharacterStatistic.Vitality)}, Ene: {m_file.GetStatistic(CharacterStatistic.Energy)}";
+                LoadCharacterFile(dlg.FileName);
             }
         }
 
@@ -94,6 +90,42 @@ namespace Diablo2HeroEditor.ViewModels
             m_file?.Save();
 
             Status = "Saved";
+        }
+
+        public void Reload()
+        {
+            LoadCharacterFile(Settings.Default.LastLoadedCharacterFile);
+        }
+
+        private bool LoadCharacterFile(string path)
+        {
+            bool success = false;
+            if (string.IsNullOrEmpty(path))
+            {
+                Status = "Click Open to load a character.";
+            }
+            else if (File.Exists(path))
+            {
+                Status = "Loaded";
+                FilePath = path;
+                m_file = new Diablo2File(path);
+                m_file.Load();
+
+                CharacterName = m_file.CharacterName;
+                HeroClass = m_file.HeroClass.ToString();
+                Stats = $"Str: {m_file.GetStatistic(CharacterStatistic.Strength)}, Dex: {m_file.GetStatistic(CharacterStatistic.Dexterity)}, Vit: {m_file.GetStatistic(CharacterStatistic.Vitality)}, Ene: {m_file.GetStatistic(CharacterStatistic.Energy)}";
+
+                Settings.Default.LastLoadedCharacterFile = path;
+                Settings.Default.Save();
+
+                success = true;
+            }
+            else
+            {
+                Status = "Failed to load character file because it doesn't exist.";
+            }
+
+            return success;
         }
     }
 }

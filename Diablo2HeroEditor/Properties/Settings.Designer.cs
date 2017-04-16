@@ -22,5 +22,29 @@ namespace Diablo2HeroEditor.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastLoadedCharacterFile {
+            get {
+                return ((string)(this["LastLoadedCharacterFile"]));
+            }
+            set {
+                this["LastLoadedCharacterFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastOpenedFolder {
+            get {
+                return ((string)(this["LastOpenedFolder"]));
+            }
+            set {
+                this["LastOpenedFolder"] = value;
+            }
+        }
     }
 }

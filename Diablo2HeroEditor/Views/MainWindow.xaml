@@ -19,6 +19,9 @@
             <Button Content="Save"
                     Margin="4"
                     Command="{Binding SaveCommand}"/>
+            <Button Content="Reload"
+                    Margin="4"
+                    Command="{Binding ReloadCommand}"/>
         </StackPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBar.ItemsPanel>
