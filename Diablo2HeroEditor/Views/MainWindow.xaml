@@ -15,12 +15,15 @@
                     Orientation="Horizontal">
             <Button Content="Open"
                     Margin="4"
+                    MinWidth="60"
                     Command="{Binding OpenCommand}"/>
             <Button Content="Save"
                     Margin="4"
+                    MinWidth="60"
                     Command="{Binding SaveCommand}"/>
             <Button Content="Reload"
                     Margin="4"
+                    MinWidth="60"
                     Command="{Binding ReloadCommand}"/>
         </StackPanel>
         <StatusBar DockPanel.Dock="Bottom">

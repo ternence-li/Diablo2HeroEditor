@@ -1,5 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Diablo2HeroEditor.Resources">
+    
     <BitmapImage x:Key="LargeInventory" UriSource="Images/LargeInventory.png" />
+    <BitmapImage x:Key="LargeStash" UriSource="Images/LargeStash.png" />
+    <BitmapImage x:Key="LargeCube" UriSource="Images/LargeCube.png" />
+    
 </ResourceDictionary>

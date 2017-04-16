@@ -17,8 +17,8 @@ namespace Diablo2HeroEditor.ViewModels
         }
 
         public ICommand OpenCommand { get { return new DelegateCommand(OnOpen); } }
-        public ICommand SaveCommand { get { return new DelegateCommand(OnSave); } }
-        public ICommand ReloadCommand { get { return new DelegateCommand(Reload); } }
+        public ICommand SaveCommand { get { return new DelegateCommand(OnSave, () => m_file != null); } }
+        public ICommand ReloadCommand { get { return new DelegateCommand(Reload, () => m_file != null); } }
 
         private string m_characterName;
         public string CharacterName
