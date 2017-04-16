@@ -12,7 +12,6 @@ namespace Diablo2HeroEditor.ViewModels
 
         public MainWindowViewModel()
         {
-            
         }
 
         public ICommand OpenCommand { get { return new DelegateCommand(OnOpen); } }

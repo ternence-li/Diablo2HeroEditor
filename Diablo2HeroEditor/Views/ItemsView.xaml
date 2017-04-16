@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Diablo2HeroEditor.Views.ItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:ItemsViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/Diablo2HeroEditor.Resources;component/Resources.xaml" />
+    </UserControl.Resources>
+    <Grid>
+        <Image Source="{StaticResource LargeInventory}" />
+    </Grid>
+</UserControl>

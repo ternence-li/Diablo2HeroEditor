@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Diablo2HeroEditor"
+        xmlns:views="clr-namespace:Diablo2HeroEditor.Views"
+        xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
         mc:Ignorable="d"
-        Title="Diablo 2 Hero Editor" Height="350" Width="525">
+        Title="Diablo 2 Hero Editor" Height="800" Width="1200">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top"
                     Orientation="Horizontal">
@@ -36,11 +40,18 @@
                 <TextBlock Text="{Binding FilePath}" />
             </StatusBarItem>
         </StatusBar>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding CharacterName}" />
-            <TextBlock Text="{Binding HeroClass}" />
-            <TextBlock Text="{Binding Stats}" />
-        </StackPanel>
+        <TabControl>
+            <TabItem Header="General">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding CharacterName}" />
+                    <TextBlock Text="{Binding HeroClass}" />
+                    <TextBlock Text="{Binding Stats}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Items">
+                <views:ItemsView />
+            </TabItem>
+        </TabControl>
     </DockPanel>
     
 </Window>
