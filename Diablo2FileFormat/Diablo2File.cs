@@ -23,7 +23,9 @@ namespace Diablo2FileFormat
         protected NpcSection m_npcSection;
         protected StatsSection m_statsSection;
         protected SkillSection m_skillSection;
-        protected ItemSection m_itemSection;
+        protected ItemListSection m_itemSection;
+        protected ItemListSection m_corpseSection;
+        protected MercenaryItemSection m_mercenarySection;
 
         protected readonly Dictionary<CharacterStatistic, uint> m_attributes = new Dictionary<CharacterStatistic, uint>();
 
@@ -35,6 +37,7 @@ namespace Diablo2FileFormat
         public IQuestData QuestData => m_questSection;
         public IStatisticData Statistics => m_statsSection;
         public ISkillData Skills => m_skillSection;
+        public IItemList Items => m_itemSection;
 
         protected virtual uint Diablo2FileSignature => 0xAA55AA55;
 
@@ -91,8 +94,20 @@ namespace Diablo2FileFormat
             m_sections.Add(m_skillSection);
             offset += m_skillSection.Size;
 
-            m_itemSection = new ItemSection(m_fileData, offset);
+            m_itemSection = new ItemListSection(m_fileData, offset);
             m_sections.Add(m_itemSection);
+            offset += m_itemSection.Size;
+
+            m_corpseSection = new ItemListSection(m_fileData, offset);
+            m_sections.Add(m_corpseSection);
+            offset += m_corpseSection.Size;
+
+            m_mercenarySection = new MercenaryItemSection(m_fileData, offset);
+            m_sections.Add(m_mercenarySection);
+            offset += m_mercenarySection.Size;
+
+            if (offset != m_fileData.Length)
+                throw new Exception("Failed to parse character file.");
         }
 
         public void Save()
