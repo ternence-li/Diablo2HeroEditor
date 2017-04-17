@@ -156,23 +156,15 @@ namespace Diablo2FileFormat
             return true;
         }
 
-        public string CharacterName => m_headerSection.CharacterName;
+        //public uint GetStatistic(CharacterStatistic stat)
+        //{
+        //    return m_statsSection.GetStatistic(stat);
+        //}
 
-        public HeroClass HeroClass
-        {
-            get { return m_headerSection.HeroClass; }
-            set { m_headerSection.HeroClass = value; }
-        }
-
-        public uint GetStatistic(CharacterStatistic stat)
-        {
-            return m_statsSection.GetStatistic(stat);
-        }
-
-        public void SetStatistic(CharacterStatistic stat, uint value)
-        {
-            m_statsSection.SetStatistic(stat, value);
-        }
+        //public void SetStatistic(CharacterStatistic stat, uint value)
+        //{
+        //    m_statsSection.SetStatistic(stat, value);
+        //}
 
         public void ActivateAllWaypoints()
         {

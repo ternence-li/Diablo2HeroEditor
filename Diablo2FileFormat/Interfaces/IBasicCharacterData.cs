@@ -9,5 +9,7 @@ namespace Diablo2FileFormat.Interfaces
     public interface IBasicCharacterData
     {
         int Level { get; set; }
+        HeroClass HeroClass { get; set; }
+        string CharacterName { get; set; }
     }
 }

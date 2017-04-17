@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Diablo2HeroEditor.Views"
         mc:Ignorable="d"
-        Title="Diablo 2 Hero Editor" Height="800" Width="1200">
+        Title="{Binding Title}" Height="800" Width="1200">
   <DockPanel>
     <StackPanel DockPanel.Dock="Top"
                 Orientation="Horizontal">

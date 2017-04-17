@@ -5,13 +5,78 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Diablo2HeroEditor.Views"
              xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
   <UserControl.DataContext>
     <viewModels:GeneralViewModel />
   </UserControl.DataContext>
   <StackPanel Orientation="Vertical">
     <TextBlock Text="{Binding CharacterName}" />
-    <TextBlock Text="{Binding HeroClass}" />
-    <TextBlock Text="{Binding Stats}" />
+    <ComboBox ItemsSource="{Binding HeroClasses}"
+              SelectedItem="{Binding HeroClass}"/>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="60" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Label Grid.Column="0"
+             Grid.Row="0"
+             HorizontalContentAlignment="Right"
+             Content="Strength:" />
+      <xctk:IntegerUpDown Grid.Column="1"
+                          Grid.Row="0"
+                          Minimum="1"
+                          Maximum="4095"
+                          Margin="2"
+                          Value="{Binding Strength}"/>
+      <Label Grid.Column="0"
+             Grid.Row="1"
+             HorizontalContentAlignment="Right"
+             Content="Dexterity:" />
+      <xctk:IntegerUpDown  Grid.Column="1"
+                           Grid.Row="1"
+                           Minimum="1"
+                           Maximum="4095"
+                           Margin="2"
+                           Value="{Binding Dexterity}" />
+      <Label Grid.Column="0"
+             Grid.Row="2"
+             HorizontalContentAlignment="Right"
+             Content="Vitality:" />
+      <xctk:IntegerUpDown  Grid.Column="1"
+                           Grid.Row="2"
+                           Minimum="1"
+                           Maximum="4095"
+                           Margin="2"
+                           Value="{Binding Vitality}" />
+      <Label Grid.Column="0"
+             Grid.Row="3"
+             HorizontalContentAlignment="Right"
+             Content="Energy:" />
+      <xctk:IntegerUpDown  Grid.Column="1"
+                           Grid.Row="3"
+                           Minimum="1"
+                           Maximum="4095"
+                           Margin="2"
+                           Value="{Binding Energy}" />
+      <Label Grid.Column="0"
+             Grid.Row="4"
+             HorizontalContentAlignment="Right"
+             Content="Stat points remaining:" />
+      <xctk:IntegerUpDown  Grid.Column="1"
+                           Grid.Row="4"
+                           Minimum="0"
+                           Maximum="4095"
+                           Margin="2"
+                           Value="{Binding Points}" />
+    </Grid>
   </StackPanel>
 </UserControl>

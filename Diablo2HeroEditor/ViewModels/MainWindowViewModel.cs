@@ -14,6 +14,7 @@ namespace Diablo2HeroEditor.ViewModels
 
         public MainWindowViewModel()
         {
+            Title = "Diablo 2 Hero Editor";
             Reload();
         }
 
@@ -40,6 +41,17 @@ namespace Diablo2HeroEditor.ViewModels
             {
                 m_status = value;
                 RaisePropertyChanged(() => Status);
+            }
+        }
+
+        private string m_title;
+        public string Title
+        {
+            get { return m_title; }
+            set
+            {
+                m_title = value;
+                RaisePropertyChanged(() => Title);
             }
         }
 
@@ -78,6 +90,8 @@ namespace Diablo2HeroEditor.ViewModels
                 FilePath = path;
                 m_file = new Diablo2File(path);
                 m_file.Load();
+
+                Title = $"Diablo 2 Hero Editor - {m_file.CharacterData.CharacterName}";
 
                 Settings.Default.LastLoadedCharacterFile = path;
                 Settings.Default.Save();

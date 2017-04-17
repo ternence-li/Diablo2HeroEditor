@@ -59,7 +59,7 @@ namespace Diablo2FileFormat.Sections
 
             if (name.Length >= 2 && name.Length <= 15)
             {
-                isValid = new Regex("[a-zA-Z]+[a-zA-Z-_]?[a-zA-Z]+").IsMatch(name); //new Regex("[a-zA-Z]*[-_]?[a-zA-Z]*").IsMatch(name); &&
+                isValid = new Regex("^[^-_][a-zA-Z]+[-_]?[a-zA-Z]+[^-_]$").IsMatch(name);
             }
 
             return isValid;
