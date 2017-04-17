@@ -4,62 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Diablo2HeroEditor.Views"
-        xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
         mc:Ignorable="d"
         Title="Diablo 2 Hero Editor" Height="800" Width="1200">
-    <Window.DataContext>
-        <viewModels:MainWindowViewModel />
-    </Window.DataContext>
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top"
-                    Orientation="Horizontal">
-            <Button Content="Open"
-                    Margin="4"
-                    MinWidth="60"
-                    Command="{Binding OpenCommand}"/>
-            <Button Content="Save"
-                    Margin="4"
-                    MinWidth="60"
-                    Command="{Binding SaveCommand}"/>
-            <Button Content="Reload"
-                    Margin="4"
-                    MinWidth="60"
-                    Command="{Binding ReloadCommand}"/>
-        </StackPanel>
-        <StatusBar DockPanel.Dock="Bottom">
-            <StatusBar.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </ItemsPanelTemplate>
-            </StatusBar.ItemsPanel>
-            <StatusBarItem Grid.Column="0">
-                <TextBlock Text="{Binding Status}" />
-            </StatusBarItem>
-            <Separator Grid.Column="1" />
-            <StatusBarItem Grid.Column="2">
-                <TextBlock Text="{Binding FilePath}" />
-            </StatusBarItem>
-        </StatusBar>
-        <TabControl>
-            <TabItem Header="General">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding CharacterName}" />
-                    <TextBlock Text="{Binding HeroClass}" />
-                    <TextBlock Text="{Binding Stats}" />
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Items">
-                <views:ItemsView />
-            </TabItem>
-            <TabItem Header="Skills" />
-            <TabItem Header="Progression" />
-        </TabControl>
-    </DockPanel>
-    
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top"
+                Orientation="Horizontal">
+      <Button Content="Open"
+              Margin="4"
+              MinWidth="60"
+              Command="{Binding OpenCommand}"/>
+      <Button Content="Save"
+              Margin="4"
+              MinWidth="60"
+              Command="{Binding SaveCommand}"/>
+      <Button Content="Reload"
+              Margin="4"
+              MinWidth="60"
+              Command="{Binding ReloadCommand}"/>
+    </StackPanel>
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBar.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+          </Grid>
+        </ItemsPanelTemplate>
+      </StatusBar.ItemsPanel>
+      <StatusBarItem Grid.Column="0">
+        <TextBlock Text="{Binding Status}" />
+      </StatusBarItem>
+      <Separator Grid.Column="1" />
+      <StatusBarItem Grid.Column="2">
+        <TextBlock Text="{Binding FilePath}" />
+      </StatusBarItem>
+    </StatusBar>
+    <TabControl>
+      <TabItem Header="General">
+        <views:StatsView />
+      </TabItem>
+      <TabItem Header="Items">
+        <views:ItemsView />
+      </TabItem>
+      <TabItem Header="Skills" />
+      <TabItem Header="Progression" />
+    </TabControl>
+  </DockPanel>
+
 </Window>

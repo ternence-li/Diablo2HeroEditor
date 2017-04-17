@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Diablo2HeroEditor.Models
+namespace Diablo2HeroEditor.Common
 {
-    public class HeroModel
+    public class MediatorMessages
     {
+        public static string CharacterLoaded = "CharacterLoaded";
     }
 }

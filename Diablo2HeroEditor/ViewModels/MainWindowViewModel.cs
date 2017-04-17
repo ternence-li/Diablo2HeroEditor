@@ -1,4 +1,5 @@
 ﻿using Diablo2FileFormat;
+using Diablo2HeroEditor.Common;
 using Diablo2HeroEditor.Helpers;
 using Diablo2HeroEditor.Properties;
 using Microsoft.Win32;
@@ -19,39 +20,6 @@ namespace Diablo2HeroEditor.ViewModels
         public ICommand OpenCommand { get { return new DelegateCommand(OnOpen); } }
         public ICommand SaveCommand { get { return new DelegateCommand(OnSave, () => m_file != null); } }
         public ICommand ReloadCommand { get { return new DelegateCommand(Reload, () => m_file != null); } }
-
-        private string m_characterName;
-        public string CharacterName
-        {
-            get { return m_characterName; }
-            set
-            {
-                m_characterName = value;
-                RaisePropertyChanged(() => CharacterName);
-            }
-        }
-
-        private string m_heroClass;
-        public string HeroClass
-        {
-            get { return m_heroClass; }
-            set
-            {
-                m_heroClass = value;
-                RaisePropertyChanged(() => HeroClass);
-            }
-        }
-
-        private string m_stats;
-        public string Stats
-        {
-            get { return m_stats; }
-            set
-            {
-                m_stats = value;
-                RaisePropertyChanged(() => Stats);
-            }
-        }
 
         private string m_filePath;
         public string FilePath
@@ -111,12 +79,10 @@ namespace Diablo2HeroEditor.ViewModels
                 m_file = new Diablo2File(path);
                 m_file.Load();
 
-                CharacterName = m_file.CharacterName;
-                HeroClass = m_file.HeroClass.ToString();
-                Stats = $"Str: {m_file.GetStatistic(CharacterStatistic.Strength)}, Dex: {m_file.GetStatistic(CharacterStatistic.Dexterity)}, Vit: {m_file.GetStatistic(CharacterStatistic.Vitality)}, Ene: {m_file.GetStatistic(CharacterStatistic.Energy)}";
-
                 Settings.Default.LastLoadedCharacterFile = path;
                 Settings.Default.Save();
+
+                Mediator.NotifyColleagues(MediatorMessages.CharacterLoaded, m_file);
 
                 success = true;
             }
