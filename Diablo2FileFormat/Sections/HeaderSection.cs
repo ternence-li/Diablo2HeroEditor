@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Diablo2FileFormat.Sections
 {
     /// <summary>
-    /// The fixed length section is the part of the file that includes everything prior to the stats section.
+    /// The fixed length section is the part of the file that includes everything prior to the quest section.
     /// </summary>
     public class HeaderSection : IDiablo2FileSection, IBasicCharacterData
     {
@@ -17,7 +17,8 @@ namespace Diablo2FileFormat.Sections
         public bool IsChanged { get; set; }
         public int Size => 335;
 
-        protected virtual uint Diablo2FileSignature => 0xAA55AA55;
+        private uint Diablo2FileSignature => 0xAA55AA55;
+
         protected virtual int VersionOffset => 0x04;
         protected virtual int FileSizeOffset => 0x08;
         protected virtual int ChecksumOffset => 0x0C;
@@ -78,6 +79,10 @@ namespace Diablo2FileFormat.Sections
                 IsChanged = true;
             }
         }
+
+        public FileVersion FileVersion => (FileVersion)BitConverter.ToUInt32(Data, VersionOffset);
+
+        public bool IsValidFileSignature => BitConverter.ToUInt32(Data, 0) == Diablo2FileSignature;
 
         public HeroClass HeroClass
         {

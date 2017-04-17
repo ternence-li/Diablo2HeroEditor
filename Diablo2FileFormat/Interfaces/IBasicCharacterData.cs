@@ -11,5 +11,7 @@ namespace Diablo2FileFormat.Interfaces
         int Level { get; set; }
         HeroClass HeroClass { get; set; }
         string CharacterName { get; set; }
+
+        void SetCharacterProgression(Difficulty difficulty, Act act);
     }
 }

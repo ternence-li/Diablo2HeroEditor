@@ -44,13 +44,10 @@
     <Compile Include="BitField.cs" />
     <Compile Include="CharacterStatistic.cs" />
     <Compile Include="BitOperations.cs" />
-    <Compile Include="CharacterStatus.cs" />
     <Compile Include="Checksum.cs" />
     <Compile Include="Diablo2Item.cs" />
     <Compile Include="Enumerations.cs" />
-    <Compile Include="HeroClass.cs" />
     <Compile Include="Diablo2File.cs" />
-    <Compile Include="FileVersion.cs" />
     <Compile Include="Interfaces\IBasicCharacterData.cs" />
     <Compile Include="Interfaces\IItemList.cs" />
     <Compile Include="Interfaces\IQuestData.cs" />

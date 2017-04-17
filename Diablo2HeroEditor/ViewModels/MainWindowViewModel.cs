@@ -86,17 +86,26 @@ namespace Diablo2HeroEditor.ViewModels
             }
             else if (File.Exists(path))
             {
-                Status = "Loaded";
-                FilePath = path;
-                m_file = new Diablo2File(path);
-                m_file.Load();
+                var file = new Diablo2File(path);
+                var validity = file.Load();
+                success = validity == FileValidity.Valid;
 
-                Title = $"Diablo 2 Hero Editor - {m_file.CharacterData.CharacterName}";
+                if (success)
+                {
+                    m_file = file;
+                    FilePath = path;
+                    Title = $"Diablo 2 Hero Editor - {m_file.CharacterData.CharacterName}";
+                    Status = "Loaded successfully";
 
-                Settings.Default.LastLoadedCharacterFile = path;
-                Settings.Default.Save();
+                    Settings.Default.LastLoadedCharacterFile = path;
+                    Settings.Default.Save();
 
-                Mediator.NotifyColleagues(MediatorMessages.CharacterLoaded, m_file);
+                    Mediator.NotifyColleagues(MediatorMessages.CharacterLoaded, m_file);
+                }
+                else
+                {
+                    Status = $"Failed to load character file because {FileValidityReson(validity)}.";
+                }
 
                 success = true;
             }
@@ -106,6 +115,24 @@ namespace Diablo2HeroEditor.ViewModels
             }
 
             return success;
+        }
+
+        private string FileValidityReson(FileValidity validity)
+        {
+            switch (validity)
+            {
+                case FileValidity.Valid:
+                    return "it is valid";
+                case FileValidity.NotDiablo2File:
+                    return "it is not a diablo 2 file";
+                case FileValidity.WrongSize:
+                    return "it has the wrong size";
+                case FileValidity.WrongVersion:
+                    return "it is the wrong version";
+                case FileValidity.UnknownError:
+                default:
+                    return "an unknown error occured";
+            }
         }
     }
 }
