@@ -3,16 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:Diablo2HeroEditor.Views"
              xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
              mc:Ignorable="d">
   <UserControl.DataContext>
     <viewModels:ItemsViewModel />
   </UserControl.DataContext>
   <UserControl.Resources>
-    <ResourceDictionary Source="pack://application:,,,/Diablo2HeroEditor.Resources;component/Resources.xaml" />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Diablo2HeroEditor.Resources;component/Resources.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <viewModels:ItemCanvasViewModel x:Key="InventoryViewModel"
+                                      BackgroundImage="{StaticResource LargeInventory}"
+                                      Location="Inventory" />
+      <viewModels:ItemCanvasViewModel x:Key="StashViewModel"
+                                      BackgroundImage="{StaticResource LargeStash}"
+                                      Location="Stash" />
+      <viewModels:ItemCanvasViewModel x:Key="CubeViewModel"
+                                      BackgroundImage="{StaticResource LargeCube}"
+                                      Location="Cube" />
+    </ResourceDictionary>
   </UserControl.Resources>
   <Grid>
-    <TabControl TabStripPlacement="Right">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="524" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <TabControl Grid.Column="0"
+                TabStripPlacement="Right">
       <TabControl.Resources>
         <Style TargetType="{x:Type TabItem}">
           <Setter Property="HeaderTemplate">
@@ -30,14 +49,17 @@
         </Style>
       </TabControl.Resources>
       <TabItem Header="Inventory">
-        <Image Source="{StaticResource LargeInventory}" />
+        <views:ItemCanvasView DataContext="{StaticResource InventoryViewModel}"/>
       </TabItem>
       <TabItem Header="Stash">
-        <Image Source="{StaticResource LargeStash}" />
+        <views:ItemCanvasView DataContext="{StaticResource StashViewModel}"/>
       </TabItem>
       <TabItem Header="Cube">
-        <Image Source="{StaticResource LargeCube}" />
+        <views:ItemCanvasView DataContext="{StaticResource CubeViewModel}"/>
       </TabItem>
     </TabControl>
+    <Grid Grid.Column="1">
+      
+    </Grid>
   </Grid>
 </UserControl>

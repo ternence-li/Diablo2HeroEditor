@@ -79,9 +79,14 @@
     </ApplicationDefinition>
     <Compile Include="Common\MediatorMessages.cs" />
     <Compile Include="ViewModels\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\ItemCanvasViewModel.cs" />
     <Compile Include="Views\GeneralView.xaml.cs">
       <DependentUpon>GeneralView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ItemCanvasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +105,9 @@
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\ItemCanvasView.xaml.cs">
+      <DependentUpon>ItemCanvasView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemsView.xaml.cs">
       <DependentUpon>ItemsView.xaml</DependentUpon>
     </Compile>

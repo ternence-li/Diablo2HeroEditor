@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Diablo2HeroEditor.Views"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="800" Width="1200">
+        ResizeMode="NoResize"
+        Title="{Binding Title}" Height="792" Width="1200">
   <DockPanel>
     <StackPanel DockPanel.Dock="Top"
                 Orientation="Horizontal">

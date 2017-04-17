@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Diablo2HeroEditor.Views.ItemCanvasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diablo2HeroEditor.Views"
+             xmlns:viewModels="clr-namespace:Diablo2HeroEditor.ViewModels"
+             mc:Ignorable="d">
+  <Grid>
+    <ItemsControl ItemsSource="{Binding RectItems}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas>
+            <Canvas.Background>
+              <ImageBrush ImageSource="{Binding BackgroundImage}" />
+            </Canvas.Background>
+          </Canvas>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.ItemContainerStyle>
+        <Style TargetType="ContentPresenter">
+          <Setter Property="Canvas.Left" Value="{Binding X}"/>
+          <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        </Style>
+      </ItemsControl.ItemContainerStyle>
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Blue"/>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </Grid>
+</UserControl>

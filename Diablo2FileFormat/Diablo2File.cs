@@ -111,8 +111,8 @@ namespace Diablo2FileFormat
                 m_sections.Add(m_mercenarySection);
                 offset += m_mercenarySection.Size;
 
-                if (offset != m_fileData.Length)
-                    validity = FileValidity.UnknownError;
+                //if (offset != m_fileData.Length)
+                //    validity = FileValidity.UnknownError;
             }
 
             return validity;
